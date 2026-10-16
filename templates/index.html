@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI 程式練習助手</title>
+    {# <link rel="stylesheet" href="{{url_for('static', filename='style.css') }}"> #}
+    <link rel="stylesheet" href="{{url_for('static',filename="style.css")}}">
+
+    <!-- CSS檔案連結 -->
+</head>
+<body>
+    <div class="container">
+        <h1>AI 程式練習助手</h1>
+        <p>請選擇一個主題，然後點擊「幫我出題」按鈕，AI 將會為您生成一個練習題目。</p>
+        <h3>請輸入選擇的學習主題:</h3>
+        <form method="POST">
+        <div class="topics">
+        <label>
+            <input type="radio"name="topic" value="輸入輸出" >
+            輸入輸出
+        </label>
+        <label>
+            <input type="radio"name="topic" value="條件判斷" >
+            條件判斷
+        </label>
+                <label>
+            <input type="radio"name="topic" value="迴圈" >
+            迴圈
+        </label>
+                <label>
+            <input type="radio"name="topic" value="串列" >
+            串列
+        </label>
+        </div>
+        <button class="min-btn" type="submit" name="action" value="generate">幫我出題</button>
+        </form>
+        <p>目前選擇的主題：{{ topic }}</p>    
+
+        <div class="question_ai">
+            <h3>AI 出題:</h3>
+            <p>{{ question_text }}</p>
+        {% if topic == "輸入輸出" %}
+        <form method="POST">
+            <input type="hidden" name="topic" value="{{ topic }}">
+        <label>
+            <input type="radio" name="student_answer" value="A">
+            A. input()
+        </label>
+        <label>
+            <input type="radio" name="student_answer" value="B">
+            B. print()
+        </label>
+        <label>
+            <input type="radio" name="student_answer" value="C">
+            C. len()
+        </label>
+        <label>
+            <input type="radio" name="student_answer" value="D">
+            D. range()
+        </label>
+         <button type="submit" class="min-btn" name="action" value="check">提交答案</button>
+        </form>
+        {% endif %}
+        </div>
+        
+
+        {% if feedback %}
+        <div class="feedback">
+            <h3>AI 回饋:</h3>
+            <p>{{feedback}}</p>
+        </div>
+        {% endif %}
+    </div>
+
+</body>
+</html>
