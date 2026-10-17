@@ -40,24 +40,26 @@
         <div class="question_ai">
             <h3>AI 出題:</h3>
             <p>{{ question_text }}</p>
-        {% if topic == "輸入輸出" %}
+        {# if topic == "輸入輸出" #}
+        {% if question_data %}
         <form method="POST">
             <input type="hidden" name="topic" value="{{ topic }}">
         <label>
             <input type="radio" name="student_answer" value="A">
-            A. input()
+            A. {{ question_data["A"] }}
         </label>
         <label>
             <input type="radio" name="student_answer" value="B">
-            B. print()
+            B. {{ question_data["B"] }}
+        </label>
         </label>
         <label>
             <input type="radio" name="student_answer" value="C">
-            C. len()
+            C. {{ question_data["C"] }}
         </label>
         <label>
             <input type="radio" name="student_answer" value="D">
-            D. range()
+            D. {{ question_data["D"] }}
         </label>
          <button type="submit" class="min-btn" name="action" value="check">提交答案</button>
         </form>
