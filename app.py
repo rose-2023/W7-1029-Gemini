@@ -1,14 +1,12 @@
 
 import os
 import json
-from dotenv import load_dotenv, find_dotenv
+from dotenv import load_dotenv
 from google import genai
 from flask import Flask, render_template, request,session
 
-print("ENV PATH:", find_dotenv(), flush=True)
-load_dotenv(os.path.join(os.path.dirname(__file__), ".env"))
-print("API KEY LOADED:", bool(os.getenv("GEMINI_API_KEY")), flush=True)
 
+load_dotenv(os.path.join(os.path.dirname(__file__), ".env"))
 client = genai.Client(api_key=os.getenv("GEMINI_API_KEY"))
 
 app = Flask(__name__)
